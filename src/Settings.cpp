@@ -43,7 +43,7 @@ void Settings::LoadForms() noexcept
     if (DifficultyGlobalFormID) {
         DifficultyGlobal = skyrim_cast<RE::TESGlobal*>(dataHandler->LookupForm(DifficultyGlobalFormID, FileName));
         _debug("Global variable found. Global is {} with a value of {}", DifficultyGlobal->GetFormEditorID(), DifficultyGlobal->value);
-    }       
+    }
 
     logger::info("All Forms loaded");
 

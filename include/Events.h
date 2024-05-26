@@ -1,14 +1,12 @@
 #pragma once
-#include "Settings.h"
 #include "Cache.h"
+#include "Settings.h"
 
 #define continueEvent RE::BSEventNotifyControl::kContinue
-#define logIt logger::debug("Changed Global {} to {}", global->GetFormEditorID(), global->value);
+#define logIt         logger::debug("Changed Global {} to {}", global->GetFormEditorID(), global->value);
 
 class MenuManager : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
 {
-
-
     static MenuManager* GetSingleton()
     {
         static MenuManager singleton;
@@ -29,10 +27,8 @@ class MenuManager : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
     }
 
 public:
-
     static void ChangeDiffGlobal()
     {
-       
         RE::PlayerCharacter* player   = Cache::GetPlayerSingleton();
         Settings*            settings = Settings::GetSingleton();
         RE::TESGlobal*       global   = settings->DifficultyGlobal;
@@ -62,7 +58,6 @@ public:
             logIt;
             break;
         }
-        
     }
 
     static void Register()
@@ -71,7 +66,4 @@ public:
         RE::UI::GetSingleton()->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
         logger::info("Registered Menu");
     }
-
 };
-
-

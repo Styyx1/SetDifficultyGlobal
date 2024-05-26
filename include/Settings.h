@@ -20,11 +20,11 @@ public:
 
     void LoadForms() noexcept;
 
-    std::string            FileName;
-    RE::FormID             DifficultyGlobalFormID;
-    RE::TESGlobal*         DifficultyGlobal;
+    std::string    FileName;
+    RE::FormID     DifficultyGlobalFormID;
+    RE::TESGlobal* DifficultyGlobal;
 
-     const std::string_view ModName = "SetDifficultyGlobal.esm";
+    const std::string_view ModName = "SetDifficultyGlobal.esm";
 
     static RE::FormID ParseFormID(const std::string& str);
 
