@@ -3,7 +3,6 @@
 #include "Settings.h"
 
 #define continueEvent RE::BSEventNotifyControl::kContinue
-#define logIt         logger::debug("Changed Global {} to {}", global->GetFormEditorID(), global->value);
 
 class MenuManager : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
 {
@@ -31,33 +30,63 @@ public:
     {
         RE::PlayerCharacter* player   = Cache::GetPlayerSingleton();
         Settings*            settings = Settings::GetSingleton();
-        RE::TESGlobal*       global   = settings->DifficultyGlobal;
+        RE::TESGlobal*       diff_global   = settings->DifficultyGlobal;
+        RE::TESGlobal*       loot_global = settings->LootChanceGlobal;
+        RE::TESGlobal*       reverseLootGlobal = settings->ReverseLootChanceGlobal;
         switch (static_cast<RE::DIFFICULTY>(player->GetGameStatsData().difficulty)) {
         case RE::DIFFICULTY::kNovice:
-            global->value = 1.0;
-            logIt;
+            diff_global->value = 1.0;
+            logGlobal(diff_global);
+            loot_global->value = 0.0;
+            logGlobal(loot_global);
+            reverseLootGlobal->value = 100.0;
+            logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kApprentice:
-            global->value = 2.0;
-            logIt;
-            break;
+            diff_global->value = 2.0;
+            logGlobal(diff_global);
+            loot_global->value = 17.5;
+            logGlobal(loot_global);
+            reverseLootGlobal->value = 80.0;
+            logGlobal(reverseLootGlobal);
         case RE::DIFFICULTY::kAdept:
-            global->value = 3.0;
-            logIt;
+            diff_global->value = 3.0;
+            logGlobal(diff_global);
+            loot_global->value = 35.0;
+            logGlobal(loot_global);
+            reverseLootGlobal->value = 62.5;
+            logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kExpert:
-            global->value = 4.0;
-            logIt;
+            diff_global->value = 4.0;
+            logGlobal(diff_global);
+            loot_global->value = 62.5;
+            logGlobal(loot_global);
+            reverseLootGlobal->value = 35.0;
+            logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kMaster:
-            global->value = 5.0;
-            logIt;
+            diff_global->value = 5.0;
+            logGlobal(diff_global);
+            loot_global->value = 80.0;
+            logGlobal(loot_global);
+            reverseLootGlobal->value = 17.5;
+            logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kLegendary:
-            global->value = 6.0;
-            logIt;
+            diff_global->value = 6.0;
+            logGlobal(diff_global);
+            loot_global->value = 100.0;
+            logGlobal(loot_global);
+            reverseLootGlobal->value = 0.0;
+            logGlobal(reverseLootGlobal);
             break;
         }
+    }
+
+    static void logGlobal(RE::TESGlobal* use_glob)
+    {
+        _debug("Changed Global {} to {}", use_glob->GetFormEditorID(), use_glob->value);
     }
 
     static void Register()

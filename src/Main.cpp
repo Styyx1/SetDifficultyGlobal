@@ -15,6 +15,9 @@ void Listener(SKSE::MessagingInterface::Message* message) noexcept
     if (message->type <=> SKSE::MessagingInterface::kPostLoadGame == 0) {
         MenuManager::ChangeDiffGlobal();
     }
+    if (message->type <=> SKSE::MessagingInterface::kNewGame == 0) {
+        MenuManager::ChangeDiffGlobal();
+    }
 }
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse)

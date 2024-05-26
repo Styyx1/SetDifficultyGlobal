@@ -22,9 +22,11 @@ public:
 
     std::string    FileName;
     RE::FormID     DifficultyGlobalFormID;
+    RE::FormID     LootChanceGlobalFormID;
+    RE::FormID     ReverseChanceGlobalFormID;
     RE::TESGlobal* DifficultyGlobal;
-
-    const std::string_view ModName = "SetDifficultyGlobal.esm";
+    RE::TESGlobal* LootChanceGlobal;
+    RE::TESGlobal* ReverseLootChanceGlobal;
 
     static RE::FormID ParseFormID(const std::string& str);
 

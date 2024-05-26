@@ -10,11 +10,19 @@ void Settings::LoadSettings() noexcept
 
     std::string fileName(ini.GetValue("General", "sModFileName", ""));
     std::string difficultyGlobalID(ini.GetValue("FormID", "DifficultyGlobalFormID", ""));
+    std::string lootChanceGlobalID(ini.GetValue("FormID", "LootChanceGlobalFormID", ""));
+    std::string reverselootChanceGlobalID(ini.GetValue("FormID", "ReverseLootChanceGlobalID", ""));
 
     debug_logging = ini.GetBoolValue("Log", "Debug");
 
     if (!difficultyGlobalID.empty()) {
         DifficultyGlobalFormID = ParseFormID(difficultyGlobalID);
+    }
+    if (!lootChanceGlobalID.empty()) {
+        LootChanceGlobalFormID = ParseFormID(lootChanceGlobalID);
+    }
+    if (!reverselootChanceGlobalID.empty()) {
+        ReverseChanceGlobalFormID = ParseFormID(reverselootChanceGlobalID);
     }
 
     if (debug_logging) {
@@ -43,6 +51,14 @@ void Settings::LoadForms() noexcept
     if (DifficultyGlobalFormID) {
         DifficultyGlobal = skyrim_cast<RE::TESGlobal*>(dataHandler->LookupForm(DifficultyGlobalFormID, FileName));
         _debug("Global variable found. Global is {} with a value of {}", DifficultyGlobal->GetFormEditorID(), DifficultyGlobal->value);
+    }
+    if (LootChanceGlobalFormID) {
+        LootChanceGlobal = skyrim_cast<RE::TESGlobal*>(dataHandler->LookupForm(LootChanceGlobalFormID, FileName));
+        _debug("Global variable found. Global is {} with a value of {}", LootChanceGlobal->GetFormEditorID(), LootChanceGlobal->value);
+    }
+    if (ReverseChanceGlobalFormID) {
+        ReverseLootChanceGlobal = skyrim_cast<RE::TESGlobal*>(dataHandler->LookupForm(ReverseChanceGlobalFormID, FileName));
+        _debug("Global variable found. Global is {} with a value of {}", ReverseLootChanceGlobal->GetFormEditorID(), ReverseLootChanceGlobal->value);
     }
 
     logger::info("All Forms loaded");
