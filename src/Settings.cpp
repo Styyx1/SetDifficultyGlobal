@@ -6,17 +6,15 @@ void Settings::LoadSettings() noexcept
 
     CSimpleIniA ini;
     ini.SetUnicode();
-    ini.LoadFile(R"(.\Data\SKSE\Plugins\StancesReborn.ini)");
+    ini.LoadFile(R"(.\Data\SKSE\Plugins\SetDifficultyGlobal.ini)");
 
     std::string fileName(ini.GetValue("General", "sModFileName", ""));
-    std::string high_stance_spell_ID(ini.GetValue("FormID", "HighStanceSpellFormID", ""));
-
-    high_key = std::stoi(ini.GetValue("Keys", "iHighStanceKey", "257"));
+    std::string difficultyGlobalID(ini.GetValue("FormID", "DifficultyGlobalFormID", ""));
 
     debug_logging = ini.GetBoolValue("Log", "Debug");
 
-    if (!high_stance_spell_ID.empty()) {
-        HighStanceSpellFormID = ParseFormID(high_stance_spell_ID);
+    if (!difficultyGlobalID.empty()) {
+        DifficultyGlobalFormID = ParseFormID(difficultyGlobalID);
     }
 
     if (debug_logging) {
@@ -41,8 +39,11 @@ void Settings::LoadForms() noexcept
     auto dataHandler = RE::TESDataHandler::GetSingleton();
 
     logger::info("Loading forms");
-    if (HighStanceSpellFormID)
-        HighStanceSpell = skyrim_cast<RE::SpellItem*>(dataHandler->LookupForm(HighStanceSpellFormID, FileName));
+
+    if (DifficultyGlobalFormID) {
+        DifficultyGlobal = skyrim_cast<RE::TESGlobal*>(dataHandler->LookupForm(DifficultyGlobalFormID, FileName));
+        _debug("Global variable found. Global is {} with a value of {}", DifficultyGlobal->GetFormEditorID(), DifficultyGlobal->value);
+    }       
 
     logger::info("All Forms loaded");
 

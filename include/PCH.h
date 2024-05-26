@@ -152,6 +152,8 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/msvc_sink.h>
 
+#define _debug logger::debug
+
 using namespace std::literals;
 using namespace REL::literals;
 

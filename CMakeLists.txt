@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.28)
 message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 
 project(
-  SKSETEmplate
+  SetDifficultyGlobal
   VERSION 1.0.0
   LANGUAGES CXX
 )
