@@ -28,10 +28,10 @@ class MenuManager : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
 public:
     static void ChangeDiffGlobal()
     {
-        RE::PlayerCharacter* player   = Cache::GetPlayerSingleton();
-        Settings*            settings = Settings::GetSingleton();
-        RE::TESGlobal*       diff_global   = settings->DifficultyGlobal;
-        RE::TESGlobal*       loot_global = settings->LootChanceGlobal;
+        RE::PlayerCharacter* player            = Cache::GetPlayerSingleton();
+        Settings*            settings          = Settings::GetSingleton();
+        RE::TESGlobal*       diff_global       = settings->DifficultyGlobal;
+        RE::TESGlobal*       loot_global       = settings->LootChanceGlobal;
         RE::TESGlobal*       reverseLootGlobal = settings->ReverseLootChanceGlobal;
         switch (static_cast<RE::DIFFICULTY>(player->GetGameStatsData().difficulty)) {
         case RE::DIFFICULTY::kNovice:
@@ -84,10 +84,7 @@ public:
         }
     }
 
-    static void logGlobal(RE::TESGlobal* use_glob)
-    {
-        _debug("Changed Global {} to {}", use_glob->GetFormEditorID(), use_glob->value);
-    }
+    static void logGlobal(RE::TESGlobal* use_glob) { _debug("Changed Global {} to {}", use_glob->GetFormEditorID(), use_glob->value); }
 
     static void Register()
     {
