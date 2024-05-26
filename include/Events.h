@@ -45,24 +45,24 @@ public:
         case RE::DIFFICULTY::kApprentice:
             diff_global->value = 2.0;
             logGlobal(diff_global);
-            loot_global->value = 17.5;
+            loot_global->value = 20.0;
             logGlobal(loot_global);
             reverseLootGlobal->value = 80.0;
             logGlobal(reverseLootGlobal);
         case RE::DIFFICULTY::kAdept:
             diff_global->value = 3.0;
             logGlobal(diff_global);
-            loot_global->value = 35.0;
+            loot_global->value = 40.0;
             logGlobal(loot_global);
-            reverseLootGlobal->value = 62.5;
+            reverseLootGlobal->value = 60.0;
             logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kExpert:
             diff_global->value = 4.0;
             logGlobal(diff_global);
-            loot_global->value = 62.5;
+            loot_global->value = 60.0;
             logGlobal(loot_global);
-            reverseLootGlobal->value = 35.0;
+            reverseLootGlobal->value = 40.0;
             logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kMaster:
@@ -70,7 +70,7 @@ public:
             logGlobal(diff_global);
             loot_global->value = 80.0;
             logGlobal(loot_global);
-            reverseLootGlobal->value = 17.5;
+            reverseLootGlobal->value = 20.0;
             logGlobal(reverseLootGlobal);
             break;
         case RE::DIFFICULTY::kLegendary:
