@@ -20,6 +20,9 @@ class MenuManager : public RE::BSTEventSink<RE::MenuOpenCloseEvent>
         if (a_event->opening) {
             return continueEvent;
         }
+        if (a_event->menuName != RE::JournalMenu::MENU_NAME)
+            return continueEvent;
+
         if (a_event->menuName == RE::JournalMenu::MENU_NAME && !a_event->opening) {
             ChangeDiffGlobal();
         }
